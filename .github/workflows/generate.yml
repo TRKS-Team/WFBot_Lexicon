@@ -14,8 +14,8 @@ jobs:
           dotnet-version: 3.1.x
       - name: Install dependencies
         run: |
-        cd /WFBot_Lexicon_Generator
-        dotnet restore
+          cd WFBot_Lexicon_Generator
+          dotnet restore
       - name: Publish
         run: dotnet publish -c "Release" --no-restore
       - name: Run
