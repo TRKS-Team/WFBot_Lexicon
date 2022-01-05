@@ -1,9 +1,4 @@
 name: generate
-defaults:
-  run:
-    shell: bash
-    working-directory: WFBot_Lexicon_Generator
-
 on:
   schedule:
     - cron:  '0 0-23 * * *'
@@ -11,6 +6,10 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: WFBot_Lexicon_Generator
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
