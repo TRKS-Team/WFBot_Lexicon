@@ -32,7 +32,7 @@ jobs:
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - name: Create local changes
         run: |
-          mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/publish/WF_Sale.json WF_Sale.json -f
+          mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WF_Sale.json WF_Sale.json -f
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
