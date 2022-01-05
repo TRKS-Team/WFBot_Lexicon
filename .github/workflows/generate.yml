@@ -1,0 +1,46 @@
+name: generate
+defaults:
+  run:
+    shell: bash
+    working-directory: WFBot_Lexicon_Generator
+
+on:
+  schedule:
+    - cron:  '0 0-23 * * *'
+  workflow_dispatch:
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: 3.1.x
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Publish
+        run: dotnet publish -c "Release" --no-restore
+      - name: Run
+        run: bin\Release\netcoreapp3.1\publish\WFBot_Lexicon_Generator.exe
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      - name: Create local changes
+        run: |
+          mv bin\Release\netcoreapp3.1\publish\WF_Sale.json WF_Sale.json
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+         git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
