@@ -15,6 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd WFBot_Lexicon_Generator
+          ls
           dotnet restore
       - name: Publish
         run: dotnet publish -c "Release" --no-restore
