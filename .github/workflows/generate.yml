@@ -26,10 +26,6 @@ jobs:
         run: dotnet publish -c "Release" --no-restore
       - name: Run
         run: dotnet WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - name: Create local changes
         run: |
           mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WF_Sale.json WF_Sale.json -f
