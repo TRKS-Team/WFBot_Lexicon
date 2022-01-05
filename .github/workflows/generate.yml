@@ -10,12 +10,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@2.1.1
       - name: Install dependencies
         run: |
           cd WFBot_Lexicon_Generator
