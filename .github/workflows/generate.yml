@@ -6,6 +6,10 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: WFBot_Lexicon_Generator
     steps:
       - uses: actions/checkout@v2
         with:
@@ -30,7 +34,6 @@ jobs:
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - name: Create local changes
         run: |
-          cd ..
           mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/publish/WF_Sale.json WF_Sale.json -f
       - name: Commit files
         run: |
