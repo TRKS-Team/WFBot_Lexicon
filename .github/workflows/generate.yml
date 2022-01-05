@@ -14,9 +14,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@2.1.1
       - name: Install dependencies
         run: |
-          cd ./WFBot_Lexicon_Generator
+          cd WFBot_Lexicon_Generator
           dotnet restore
       - name: Publish
         run: dotnet publish -c "Release" --no-restore
@@ -29,7 +31,7 @@ jobs:
       - name: Create local changes
         run: |
           cd ..
-          mv bin/Release/netcoreapp3.1/publish/WF_Sale.json WF_Sale.json -f
+          mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/publish/WF_Sale.json WF_Sale.json -f
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
