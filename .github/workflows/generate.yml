@@ -11,9 +11,6 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: 3.1.x
     steps:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
