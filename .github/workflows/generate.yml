@@ -30,10 +30,6 @@ jobs:
         run: |
           ls -la
           git add WF_Sale.json
-        defaults:
-              run:
-                shell: bash
-                working-directory: /
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -46,7 +42,7 @@ jobs:
           branch: ${{ github.ref }}
   test:
     runs-on: ubuntu-latest
-    steps:
-      - name: test
-      run: ls -la
+      steps:
+        - name: test
+        run: ls -la
 
