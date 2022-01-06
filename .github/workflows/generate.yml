@@ -29,6 +29,7 @@ jobs:
       - name: Create local changes
         run: |
           ls -la
+          git add WF_Sale.json
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
