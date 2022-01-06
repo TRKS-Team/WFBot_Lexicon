@@ -27,8 +27,8 @@ jobs:
         run: dotnet publish -c "Release" --no-restore
       - name: Run
         run: |
-        cd ..
-        dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
+          cd ..
+          dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
       - name: Create local changes
         run: |
           cd ..
