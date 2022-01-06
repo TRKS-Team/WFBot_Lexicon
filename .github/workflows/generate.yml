@@ -25,7 +25,11 @@ jobs:
       - name: Publish
         run: dotnet publish -c "Release" --no-restore
       - name: Run
-        run: dotnet WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
+        run: dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
+            defaults:
+              run:
+                shell: bash
+                working-directory: 
       - name: Create local changes
         run: |
           ls -la
