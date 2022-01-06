@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   generate:
+    name: Generate
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -41,8 +42,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
   test:
+    name: Test
     runs-on: ubuntu-latest
-      steps:
-        - name: test
-        run: ls -la
+    steps:
+      - name: test
+      run: ls -la
 
