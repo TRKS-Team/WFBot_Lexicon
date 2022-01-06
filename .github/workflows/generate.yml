@@ -26,14 +26,18 @@ jobs:
         run: dotnet publish -c "Release" --no-restore
       - name: Run
         run: dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
-            defaults:
-              run:
-                shell: bash
-                working-directory: 
+        defaults:
+          run:
+            shell: bash
+            working-directory: /
       - name: Create local changes
         run: |
           ls -la
           git add WF_Sale.json
+        defaults:
+              run:
+                shell: bash
+                working-directory: /
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
