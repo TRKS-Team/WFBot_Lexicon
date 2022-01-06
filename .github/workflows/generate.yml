@@ -28,9 +28,7 @@ jobs:
         run: dotnet WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
       - name: Create local changes
         run: |
-          cd WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1
           ls -la
-          mv WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WF_Sale.json WF_Sale.json -f
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
