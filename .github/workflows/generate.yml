@@ -26,10 +26,6 @@ jobs:
         run: dotnet publish -c "Release" --no-restore
       - name: Run
         run: dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll
-        defaults:
-          run:
-            shell: bash
-            working-directory: /
       - name: Create local changes
         run: |
           ls -la
@@ -48,4 +44,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+      run: ls -la
 
