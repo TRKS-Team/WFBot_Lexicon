@@ -43,6 +43,7 @@ jobs:
           branch: ${{ github.ref }}
   test:
     name: Test
+    needs: generate
     runs-on: ubuntu-latest
     steps:
       - name: test
