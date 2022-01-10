@@ -33,7 +33,7 @@ jobs:
         run: |
           cd ..
           ls -la
-          git add WF_Sale.json
+          git add WFBot_Sale.json
       - name: Commit files
         run: |
           cd ..
