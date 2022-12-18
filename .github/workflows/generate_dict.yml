@@ -1,4 +1,4 @@
-name: generate
+name: generate_dict
 on:
   workflow_dispatch:
 jobs:
