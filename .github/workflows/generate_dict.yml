@@ -1,0 +1,45 @@
+name: generate
+on:
+  workflow_dispatch:
+jobs:
+  generate:
+    name: Generate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: WFBot_Lexicon_Generator
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Publish
+        run: dotnet publish -c "Release" --no-restore
+      - name: Run
+        run: |
+          cd ..
+          dotnet WFBot_Lexicon_Generator/WFBot_Lexicon_Generator/bin/Release/netcoreapp3.1/WFBot_Lexicon_Generator.dll dict
+      - name: Create local changes
+        run: |
+          cd ..
+          ls -la
+          git add WFBot_Dict.json
+      - name: Commit files
+        run: |
+          cd ..
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
